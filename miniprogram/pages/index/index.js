@@ -60,7 +60,8 @@ Page({
     }],
     envList,
     selectedEnv: envList[0],
-    haveCreateCollection: false
+    haveCreateCollection: false,
+    gd: getApp().globalData,
   },
 
   onClickPowerInfo(e) {
@@ -106,6 +107,27 @@ Page({
   jumpPage(e) {
     wx.navigateTo({
       url: `/pages/${e.currentTarget.dataset.page}/index?envId=${this.data.selectedEnv.envId}`,
+    });
+  },
+
+  goToTask1PrepareRoom(e){
+    const gd = getApp().globalData;
+    // if(gd.current_task == 3){
+    //   gd.current_task = 1;
+    // } else {
+    //   gd.current_task += 1;
+    // }
+    gd.current_task = 1;
+    gd.task_tested_num = [0, 0, 0];
+    gd.time_elasped_task1 = [];
+    gd.time_elapsed_task2 = [];
+    gd.time_elapsed_task3 = [];
+    gd.isCorrect_task1 = [];
+    gd.isCorrect_task2 = [];
+    gd.isCorrect_task3 = [];
+    console.log('goToTask1PrepareRoom')
+    wx.redirectTo({
+      url: `/pages/taskPrepareRoom/index?envId=${this.data.selectedEnv.envId}`,
     });
   },
 

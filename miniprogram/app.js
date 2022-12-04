@@ -15,14 +15,16 @@ App({
     }
 
     this.globalData = {
-      task1_tested_num: 0,
-      task2_tested_num: 0,
-      task3_tested_num: 0,
-      current_test: 1,
+      task_tested_num: [0, 0, 0],
+      task_exp_num: [2, 3, 3],
+      current_task: 1,
       testee_id: "dummy",
-      time_elasped_task1: [],
+      time_elapsed_task1: [],
       time_elapsed_task2: [],
       time_elapsed_task3: [],
+      isCorrect_task1: [],
+      isCorrect_task2: [],
+      isCorrect_task3: [],
     };
   }
 });

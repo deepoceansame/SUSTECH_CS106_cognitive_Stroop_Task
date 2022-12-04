@@ -1,0 +1,14 @@
+<view>This is prepare room</view>
+<view>current task:{{gd.current_task}}</view>
+<view>task_tested_num: {{gd.task_tested_num}}</view>
+<view>task_exp_num: {{gd.task_exp_num}}</view>
+<view>testee_id: {{gd.testee_id}}</view>
+<view>isCorrect_task1: {{gd.isCorrect_task1}}</view>
+<view>isCorrect_task2: {{gd.isCorrect_task2}}</view>
+<view>isCorrect_task3: {{gd.isCorrect_task3}}</view>
+<view>time_elapsed_task1: {{gd.time_elapsed_task1}}</view>
+<view>time_elapsed_task2: {{gd.time_elapsed_task2}}</view>
+<view>time_elapsed_task3: {{gd.time_elapsed_task3}}</view>
+<view>envid: {{envId}}</view>
+
+<button class="button" id="t1_continue" bindtap="goToTestRoom">继续</button>
