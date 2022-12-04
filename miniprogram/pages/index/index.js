@@ -119,7 +119,7 @@ Page({
     // }
     gd.current_task = 1;
     gd.task_tested_num = [0, 0, 0];
-    gd.time_elasped_task1 = [];
+    gd.time_elapsed_task1 = [];
     gd.time_elapsed_task2 = [];
     gd.time_elapsed_task3 = [];
     gd.isCorrect_task1 = [];

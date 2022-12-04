@@ -19,7 +19,7 @@ Page({
     gd.task_exp_num = [2, 3, 3];
     gd.current_task = 1;
     //gd.testee_id = "dummy";
-    gd.time_elasped_task1 = [];
+    gd.time_elapsed_task1 = [];
     gd.time_elapsed_task2 = [];
     gd.time_elapsed_task3 = [];
     gd.isCorrect_task1 = [];
