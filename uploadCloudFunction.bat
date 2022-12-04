@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\Tencent\微信web开发者工具\cli.bat" cloud functions deploy --e stroop-task-9giws0f625f8d197 --n quickstartFunctions --r --project "D:\important\code\miniPrograms\stroop-task" --report_first --report
