@@ -6,7 +6,7 @@ Page({
   data: {
     showUploadTip: false,
     powerList: [{
-      title: '云函数',
+      title: '云函数 云函数',
       tip: '安全、免鉴权运行业务代码',
       showItem: false,
       item: [{

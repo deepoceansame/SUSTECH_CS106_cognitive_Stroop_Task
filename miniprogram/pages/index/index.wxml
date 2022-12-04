@@ -1,9 +1,13 @@
 <!--index.wxml-->
 <view class="container">
 
-  <view class="title">快速了解云开发</view>
+  <view class="title">Stroop Task</view>
 
-  <view class="top_tip">免鉴权接口调用 免部署后台 高并发</view>
+  <view class="top_tip">task1 颜色与字意相同</view>
+  <view class="top_tip">task2 颜色与字意不同 选择字意</view>
+  <view class="top_tip">task3 颜色与字意不同 选择颜色</view>
+
+
 
   <view class="power" wx:key="title" wx:for="{{powerList}}" wx:for-item="power">
     <view class="power_info" data-index="{{index}}" bindtap="onClickPowerInfo">
@@ -24,7 +28,7 @@
       </view>
     </view>
   </view>
-
+  <button class="button" id="tes_beg_bt" bindtap="goToTask1Sample">开始测试</button>
   <view class="environment" bindtap="onChangeShowEnvChoose">当前环境 {{ selectedEnv.alias }}</view>
 
   <cloud-tip-modal showUploadTipProps="{{showUploadTip}}"></cloud-tip-modal>
