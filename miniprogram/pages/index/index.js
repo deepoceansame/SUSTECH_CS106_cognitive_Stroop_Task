@@ -125,10 +125,70 @@ Page({
     gd.isCorrect_task1 = [];
     gd.isCorrect_task2 = [];
     gd.isCorrect_task3 = [];
-    console.log('goToTask1PrepareRoom')
-    wx.redirectTo({
-      url: `/pages/taskPrepareRoom/index?envId=${this.data.selectedEnv.envId}`,
-    });
+    console.log('tes');
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.selectedEnv.envId
+      },
+      data: {
+        type: 'getOpenId'
+      }
+    }).then(
+      (resp) => {
+        console.log('getOpenID'+resp.result.openid);
+        getApp().globalData.testee_id = resp.result.openid;
+        console.log('goToTask1PrepareRoom')
+        wx.redirectTo({
+          url: `/pages/taskPrepareRoom/index?envId=${this.data.selectedEnv.envId}`,
+        });
+      }
+    ).catch(
+      (e) => {
+      console.log(e);
+      }
+    );
+  },
+
+  removeAllRecord() {
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.selectedEnv.envId
+      },
+      data: {
+        type: 'testFunction'
+      }
+    }).then(
+      (resp) => {
+        console.log(resp);
+        console.log('test');
+      }
+    ).catch(
+      (e) => {
+      console.log(e);
+      }
+    );
+
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.selectedEnv.envId
+      },
+      data: {
+        type: 'removeAllRecord'
+      }
+    }).then(
+      (resp) => {
+        console.log(resp);
+        console.log('删除了所有记录');
+      }
+    ).catch(
+      (e) => {
+      console.log(e);
+      }
+    );
   },
 
   onClickDatabase(powerList) {

@@ -43,6 +43,10 @@
 <view>envid: {{selectedEnv.envId}}</view>
 
   <button class="button" id="tes_beg_bt" bindtap="goToTask1PrepareRoom">开始测试</button>
+
+
+  <view>-----------------------------------------------------------------------------------</view>
+  <button class="button" id="rm_al_bt" bindtap="removeAllRecord">删除所有记录</button>
   <view class="environment" bindtap="onChangeShowEnvChoose">当前环境 {{ selectedEnv.alias }}</view>
 
   <cloud-tip-modal showUploadTipProps="{{showUploadTip}}"></cloud-tip-modal>

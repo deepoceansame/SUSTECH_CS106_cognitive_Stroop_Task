@@ -2,6 +2,8 @@ Page({
   data: {
     gd: {},
     envId: '',
+    is_correct: 0,
+    used_time: 0,
   },
 
   onLoad(options) {
@@ -52,6 +54,8 @@ Page({
   },
 
   recordElapsedTime(){
+    // TODO 计时给used_time 用于储存
+    this.data.used_time = 0;
     console.log("record elapsed time");
     const gd = this.data.gd;
     if(gd.current_task == 1){
@@ -66,6 +70,8 @@ Page({
     }
   },
   recordIsCorrect(){
+    // TODO 储存需要is_correct is_correct指本次test是否正确 0 表不正确 1 表正确
+    this.data.is_correct = 0;
     console.log("record isCorrect");
     const gd = this.data.gd;
     if(gd.current_task == 1){
@@ -78,7 +84,28 @@ Page({
       gd.isCorrect_task3.push(1);
     }
   },
+
   storeData(){
+    const gd = this.data.gd;
+    wx.cloud.callFunction({
+      name: 'quickstartFunctions',
+      config: {
+        env: this.data.envId
+      },
+      data: {
+        type: 'addRecord',
+        testee_id: gd.testee_id,
+        task_id: gd.current_task,
+        is_correct: this.data.is_correct,
+        used_time: this.data.used_time,
+      }
+    }).then((resp) => {
+      console.log(resp);
+      console.log('下面是是否插入到数据库里的record');
+      console.log(resp.result.event);
+   }).catch((e) => {
+     console.log(e);
+   });
     console.log("store Data");
   },
 });
