@@ -6,8 +6,16 @@
   box-sizing: border-box;
 } 
 
-button {
-  background: initial;
+image{
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin-bottom: 40rpx;
+}
+
+button{
+  margin-top: 30rpx;  
 }
 
 button:focus{
@@ -20,7 +28,7 @@ button::after{
 
 
 page {
-  background: #f6f6f6;
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

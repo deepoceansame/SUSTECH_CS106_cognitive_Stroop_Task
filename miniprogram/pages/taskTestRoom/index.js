@@ -2,27 +2,132 @@ Page({
   data: {
     gd: {},
     envId: '',
-    is_correct: 0,
     used_time: 0,
+    title: '',
+    color: 1,
+    text: 1,
+    right: 0,
+    choice: [],
   },
 
   onLoad(options) {
     console.log("\nTest Room onload");
     const gd = getApp().globalData;
+    var title = '选择图中文字意思所表示的颜色';
+    if (gd.current_task==3){
+      title = '选择图中文字的填充颜色';
+    }
+    console.log("\ntitle: ", title);
     this.setData({
       envId: options.envId,
       gd: gd,
+      title: title,
     });
     this.createProblem();
   },
 
   createProblem(){
-    console.log("create problem")
+    console.log("create problem");
+    const gd = getApp().globalData;
+    if (gd.current_task==1){
+      var color = Math.floor(Math.random() * 6) + 1;
+      var text = color;
+      var all = [1,2,3,4,5,6];
+      var choice = [0,0,0,0];
+      all[text-1] = 0;
+      var right = Math.floor(Math.random() * 4);
+      choice[right] = text;
+      var other = text;
+      for (var i = 0; i < 3; i++) {
+        var step = Math.floor(Math.random() * 5);
+        other = (other + step) % 6;
+        while (all[other] == 0){
+          other = (other+1)%6;
+        }
+        right = (right + 1)%4;
+        choice[right]=all[other];
+        all[other]=0;
+      }
+    } else{
+      var color = Math.floor(Math.random() * 5) + 1;
+      var text = Math.floor(Math.random() * 5) + 1;
+      var step = Math.floor(Math.random() * 4)
+      text += step;
+      text %= 5;
+      text++
+      step = Math.floor(Math.random() * 4)
+      color += step;
+      color %= 5;
+      color++
+      while (text==color){
+        step = Math.floor(Math.random() * 4)
+        text += step;
+        text %= 5;
+        text++
+        step = Math.floor(Math.random() * 4)
+        color += step;
+        color %= 5;
+        color++
+      }
+      var all = [1,2,3,4,5];
+      var choice = [0,0,0,0];
+      var right = Math.floor(Math.random() * 4);
+      if (gd.current_task==2){
+        all[text-1] = 0;
+        choice[right] = text;
+        var other = text;
+      } else {
+        all[color-1] = 0;
+        choice[right] = color;
+        var other = color;
+      }
+      for (var i = 0; i < 3; i++) {
+        var step = Math.floor(Math.random() * 5);
+        other = (other + step) % 5;
+        while (all[other] == 0){
+          other = (other+1)%5;
+        }
+        right = (right + 1)%4;
+        choice[right]=all[other];
+        all[other]=0;
+      }
+    }
+    var choice_text = [];
+    for (var i = 0; i < 4; i++) {
+      switch (choice[i]){
+        case 1:
+          choice_text[i] = '红色'
+          break;
+        case 2:
+          choice_text[i] = '黄色'
+          break;
+        case 3:
+          choice_text[i] = '蓝色'
+          break;
+        case 4:
+          choice_text[i] = '绿色'
+          break;
+        case 5:
+          choice_text[i] = '紫色'
+          break;
+        case 6:
+          choice_text[i] = '黑色'
+          break;
+      }
+    }
+    right = (right + 1)%4+1;
+    this.setData({
+      choice: choice_text,
+      color: color,
+      text: text,
+      right: right
+    });
   },
 
   afterChosen(e){
+    var choose = e.currentTarget.dataset.choose;
     this.recordElapsedTime();
-    this.recordIsCorrect();
+    this.recordIsCorrect(choose == this.data.right);
     this.storeData();
     const gd = this.data.gd;
     var cur_task = gd.current_task;
@@ -69,19 +174,19 @@ Page({
       gd.time_elapsed_task3.push(1.5);
     }
   },
-  recordIsCorrect(){
+  recordIsCorrect(correct){
     // TODO 储存需要is_correct is_correct指本次test是否正确 0 表不正确 1 表正确
     this.data.is_correct = 0;
     console.log("record isCorrect");
     const gd = this.data.gd;
     if(gd.current_task == 1){
-      gd.isCorrect_task1.push(1);
+      gd.isCorrect_task1.push(correct);
     }
     else if(gd.current_task == 2){
-      gd.isCorrect_task2.push(0);
+      gd.isCorrect_task2.push(correct);
     }
     else{
-      gd.isCorrect_task3.push(1);
+      gd.isCorrect_task3.push(correct);
     }
   },
 

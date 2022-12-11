@@ -1,0 +1,6 @@
+.container1 view{
+  text-align: center;
+  align-content: center;
+  vertical-align: middle;
+  line-height: 150rpx;
+}

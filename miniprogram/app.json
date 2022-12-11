@@ -17,9 +17,8 @@
     "pages/resultPage/index"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Stroop Task",
     "navigationBarTextStyle": "black"
   },
