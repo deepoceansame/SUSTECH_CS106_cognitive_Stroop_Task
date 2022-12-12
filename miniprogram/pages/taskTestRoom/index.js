@@ -176,7 +176,7 @@ Page({
   },
   recordIsCorrect(correct){
     // TODO 储存需要is_correct is_correct指本次test是否正确 0 表不正确 1 表正确
-    this.data.is_correct = 0;
+    this.data.is_correct = correct;
     console.log("record isCorrect");
     const gd = this.data.gd;
     if(gd.current_task == 1){
@@ -192,6 +192,7 @@ Page({
 
   storeData(){
     const gd = this.data.gd;
+    var myDate = new Date();
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -203,6 +204,7 @@ Page({
         task_id: gd.current_task,
         is_correct: this.data.is_correct,
         used_time: this.data.used_time,
+        test_time: myDate.getTime(),
       }
     }).then((resp) => {
       console.log(resp);

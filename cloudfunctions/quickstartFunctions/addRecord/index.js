@@ -14,6 +14,7 @@ exports.main = async (event, context) => {
         task_id: event.task_id,
         is_correct: event.is_correct,
         used_time: event.used_time,
+        test_time: event.test_time,
       }
     });
     return {
