@@ -8,6 +8,16 @@ Page({
     text: 1,
     right: 0,
     choice: [],
+    start_time: 0,
+    end_time: 0,
+  },
+
+  onShow(options) {
+    var myDate = new Date();
+    console.log('test room onshow');
+    console.log('options '+options);
+    this.data.start_time = myDate.getTime();
+    console.log('start time '+ this.data.start_time);
   },
 
   onLoad(options) {
@@ -160,18 +170,20 @@ Page({
 
   recordElapsedTime(){
     // TODO 计时给used_time 用于储存
-    this.data.used_time = 0;
-    console.log("record elapsed time");
+    var myDate = new Date();
+    this.data.end_time = myDate.getTime();
+    this.data.used_time = this.data.end_time - this.data.start_time;
+    console.log("task" + this.data.cur_task + "record elapsed time" + this.data.used_time);
     const gd = this.data.gd;
     if(gd.current_task == 1){
       console.log("time task1 pushed");
-      gd.time_elapsed_task1.push(1.3);
+      gd.time_elapsed_task1.push(this.data.used_time);
     }
     else if(gd.current_task == 2){
-      gd.time_elapsed_task2.push(1.4);
+      gd.time_elapsed_task2.push(this.data.used_time);
     }
     else{
-      gd.time_elapsed_task3.push(1.5);
+      gd.time_elapsed_task3.push(this.data.used_time);
     }
   },
   recordIsCorrect(correct){
@@ -192,7 +204,6 @@ Page({
 
   storeData(){
     const gd = this.data.gd;
-    var myDate = new Date();
     wx.cloud.callFunction({
       name: 'quickstartFunctions',
       config: {
@@ -204,7 +215,7 @@ Page({
         task_id: gd.current_task,
         is_correct: this.data.is_correct,
         used_time: this.data.used_time,
-        test_time: myDate.getTime(),
+        test_time: this.data.end_time,
       }
     }).then((resp) => {
       console.log(resp);

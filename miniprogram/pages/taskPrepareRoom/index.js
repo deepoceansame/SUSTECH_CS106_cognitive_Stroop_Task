@@ -5,7 +5,7 @@ Page({
   },
 
   onLoad(options) {
-    console.log("testRoom onLoad");
+    console.log("prepare room onLoad");
     const gd = getApp().globalData;
     this.setData({
       envId: options.envId,
