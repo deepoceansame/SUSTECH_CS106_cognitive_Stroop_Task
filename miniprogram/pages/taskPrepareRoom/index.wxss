@@ -1,0 +1,5 @@
+.centerview{
+  display: flex;
+  justify-content: center;
+  /* border: 2rpx solid #ccc; */
+}

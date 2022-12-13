@@ -1,14 +1,14 @@
-<view>This is prepare room</view>
-<view>current task:{{gd.current_task}}</view>
-<view>task_tested_num: {{gd.task_tested_num}}</view>
-<view>task_exp_num: {{gd.task_exp_num}}</view>
-<view>testee_id: {{gd.testee_id}}</view>
-<view>isCorrect_task1: {{gd.isCorrect_task1}}</view>
-<view>isCorrect_task2: {{gd.isCorrect_task2}}</view>
-<view>isCorrect_task3: {{gd.isCorrect_task3}}</view>
-<view>time_elapsed_task1: {{gd.time_elapsed_task1}}</view>
-<view>time_elapsed_task2: {{gd.time_elapsed_task2}}</view>
-<view>time_elapsed_task3: {{gd.time_elapsed_task3}}</view>
-<view>envid: {{envId}}</view>
 
+
+<view class="centerview" wx:if="{{gd.current_task==1}}">接下来是task1示例</view>
+<view class="centerview" wx:if="{{gd.current_task==1}}">颜色与字义相同</view>
+<view class="centerview" wx:if="{{gd.current_task==1}}"><image src='/images/prepare_images/task1.png' mode="heightFix" ></image></view>
+
+<view class="centerview" wx:if="{{gd.current_task==2}}">接下来是task2示例</view>
+<view class="centerview" wx:if="{{gd.current_task==2}}">颜色与字义不同选择字义</view>
+<view class="centerview" wx:if="{{gd.current_task==2}}"><image src='/images/prepare_images/task2.png' mode="heightFix" ></image></view>
+
+<view class="centerview" wx:if="{{gd.current_task==3}}">接下来是task3示例</view>
+<view class="centerview" wx:if="{{gd.current_task==3}}">颜色与字义不同选择颜色</view>
+<view class="centerview" wx:if="{{gd.current_task==3}}"><image src='/images/prepare_images/task3.png' mode="heightFix" ></image></view>
 <button class="button" id="t1_continue" bindtap="goToTestRoom">继续</button>
